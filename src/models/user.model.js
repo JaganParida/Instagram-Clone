@@ -21,6 +21,18 @@ const userSchema = new mongoose.Schema({
     default:
       "https://ik.imagekit.io/xscpkjvr9/defaultProfile.webp?updatedAt=1771088943753",
   },
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
 });
 
 const userModel = mongoose.model("user", userSchema);
