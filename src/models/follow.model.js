@@ -20,6 +20,7 @@ const followSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+
 const followModel = mongoose.model("follows", followSchema);
 
 module.exports = followModel;
