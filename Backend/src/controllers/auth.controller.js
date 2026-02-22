@@ -100,7 +100,26 @@ async function loginController(req, res) {
   });
 }
 
+/**
+ * get-me controller
+ */
+async function getMeController(req, res) {
+  const userId = req.user.id;
+
+  const user = await userModel.findById(userId);
+
+  res.status(200).json({
+    user: {
+      username: user.username,
+      email: user.email,
+      bio: user.bio,
+      profileImage: user.profileImage,
+    },
+  });
+}
+
 module.exports = {
   registerController,
   loginController,
+  getMeController,
 };
