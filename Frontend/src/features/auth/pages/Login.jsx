@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../styles/form.scss";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
+  const { user, loading, handleLogin } = useAuth();
+
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
 
-  const { handleLogin, loading } = useAuth();
   const navigate = useNavigate();
 
   if (loading) {
-    return <h1>Loading....</h1>;
+    return (
+      <main>
+        <h1>Loading....</h1>
+      </main>
+    );
   }
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    handleLogin(username, password).then((res) => {
-      console.log(res);
+    await handleLogin(username, password).then(() => {
+      console.log("user logged in");
       navigate("/");
     });
-  }
+  };
 
   return (
     <main>
@@ -34,6 +39,7 @@ const Login = () => {
             }}
             type="text"
             name="username"
+            id="username"
             placeholder="Enter username"
           />
           <input
@@ -42,15 +48,16 @@ const Login = () => {
             }}
             type="password"
             name="password"
+            id="password"
             placeholder="Enter password"
           />
-          <button type="submit">Login</button>
+          <button className="button primary-button" type="submit">
+            Login
+          </button>
         </form>
         <p>
-          Don't have an account?{" "}
-          <Link className="toggleAuthForm" to="/register">
-            Register
-          </Link>
+          Don't have an account?
+          <Link to="/register">Create One.</Link>
         </p>
       </div>
     </main>

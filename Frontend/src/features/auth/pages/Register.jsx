@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 
@@ -38,6 +38,7 @@ const Register = () => {
             }}
             type="text"
             name="username"
+            id="username"
             placeholder="Enter username"
           />
           <input
@@ -46,7 +47,8 @@ const Register = () => {
             }}
             type="email"
             name="email"
-            placeholder="Enter email"
+            id="email"
+            placeholder="Enter email address"
           />
           <input
             onInput={(e) => {
@@ -54,15 +56,16 @@ const Register = () => {
             }}
             type="password"
             name="password"
+            id="password"
             placeholder="Enter password"
           />
-          <button type="submit">Register</button>
+          <button className="button primary-button" type="submit">
+            Register
+          </button>
         </form>
         <p>
           Already have an account?
-          <Link className="toggleAuthForm" to="/login">
-            Login
-          </Link>
+          <Link to="/login">Login to account</Link>
         </p>
       </div>
     </main>
