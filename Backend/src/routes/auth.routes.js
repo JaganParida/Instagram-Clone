@@ -1,26 +1,11 @@
 const express = require("express");
-const authController = require("../controllers/auth.controller");
-const identfyUser = require("../middlewares/auth.middleware");
-
 const authRouter = express.Router();
+const authController = require("../controllers/auth.controller");
 
-/**
- * POST /api/auth/register
- */
+// /api/auth/register
+authRouter.post("/register", authController.registerContoller);
 
-authRouter.post("/register", authController.registerController);
-
-/**
- * POST /api/auth/login
- */
-
+// /api/auth/login
 authRouter.post("/login", authController.loginController);
-
-/**
- * @route GET /api/auth/get-me
- * @description GET the currently logged in user's information
- * @access Private
- */
-authRouter.get("/get-me", identfyUser, authController.getMeController);
 
 module.exports = authRouter;
